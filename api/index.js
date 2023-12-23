@@ -2,11 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
+import authRouter from './routes/auth.route.js';
 
 dotenv.config();
 
 mongoose
-    .connect(process.env.MONGO)
+    .connect(/*process.env.MONGO*/'mongodb+srv://devashish15262:realEstateAppP123@real-estate.ikffppf.mongodb.net/real-estate?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 15000 })
     .then(() => {
         console.log('connected to mongoDB');
     })
@@ -17,6 +18,8 @@ mongoose
 
 const app = express();
 
+app.use(express.json());
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
@@ -24,3 +27,4 @@ app.listen(PORT, () => {
 });
 
 app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
