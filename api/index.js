@@ -15,7 +15,7 @@ mongoose
     .catch((err) => {
         console.error(err);
     });
-//.env is ignored by github, so it's safer
+//we made sure that .env is ignored by github, so it's safer
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(cookieParser());
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT} !`) 
+    console.log(`Server is running on port: ${PORT} !`)
 });
 
 app.use('/api/user', userRouter);

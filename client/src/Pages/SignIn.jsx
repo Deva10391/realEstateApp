@@ -23,7 +23,6 @@ export default function SignIn() {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      console.log('submitting', formData);
       const res = await fetch('/api/auth/signin',
         {
           method: 'POST',
@@ -41,7 +40,7 @@ export default function SignIn() {
       dispatch(signInSuccess(data));
       navigate('/');
     } catch (err) {
-      dispatch(signInFailure(data.message));
+      dispatch(signInFailure(err.message));
     }
   };
 
