@@ -56,3 +56,15 @@ export const getListing = async (req, res, next) => {
         next(err);
     }
 }
+
+export const getListings = async (req, res, next) => {
+    try {
+        const listings = await Listing.find();
+        if (!listings) {
+            return next(errorHandler(404, 'listing not found'));
+        }
+        res.status(200).json(listings);
+    } catch (err) {
+        next(err);
+    }
+}
