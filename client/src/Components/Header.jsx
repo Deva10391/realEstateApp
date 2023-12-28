@@ -13,7 +13,6 @@ export default function Header() {
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('searchTerm', searchTerm);
         const searchQuery = urlParams.toString();
-        console.log(searchTerm, searchQuery, urlParams);
         navigate(`/search?${searchQuery}`);
     }
 
