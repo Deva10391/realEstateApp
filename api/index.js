@@ -10,7 +10,7 @@ import path from "path";
 dotenv.config();
 
 mongoose
-    .connect(process.env.MONGO || 'mongodb+srv://devashish15262:realEstateAppP123@real-estate.ikffppf.mongodb.net/real-estate?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 15000 })
+    .connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 15000 })
     .then(() => {
         console.log('connected to mongoDB');
     })
@@ -26,17 +26,17 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT} !`)
+app.listen(3000, () => {
+    console.log(`Server is running on port: 3000 !`)
 });
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
-app.use(express.static(path.join(__dirname, 'client/build/dist')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
