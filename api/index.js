@@ -10,7 +10,7 @@ import path from "path";
 dotenv.config();
 
 mongoose
-    .connect(/*process.env.MONGO*/'mongodb+srv://devashish15262:realEstateAppP123@real-estate.ikffppf.mongodb.net/real-estate?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 15000 })
+    .connect(process.env.MONGO || 'mongodb+srv://devashish15262:realEstateAppP123@real-estate.ikffppf.mongodb.net/real-estate?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 15000 })
     .then(() => {
         console.log('connected to mongoDB');
     })
@@ -18,6 +18,8 @@ mongoose
         console.error(err);
     });
 //we made sure that .env is ignored by github, so it's safer
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -34,7 +36,7 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
-const __dirname = path.resolve(path.join(__dirname, 'client/build/dist'));
+app.use(express.static(path.join(__dirname, 'client/build/dist')));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
