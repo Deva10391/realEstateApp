@@ -17,6 +17,7 @@ mongoose
     .catch((err) => {
         console.error(err);
     });
+
 //we made sure that .env is ignored by github, so it's safer
 
 const __dirname = path.resolve();
