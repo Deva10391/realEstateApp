@@ -10,7 +10,7 @@ import path from "path";
 dotenv.config();
 
 mongoose
-    .connect('mongodb+srv://devashish15262:realEstateAppP123@real-estate.ikffppf.mongodb.net/real-estate?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 15000 })
+    .connect(process.env.MONGO || 'mongodb+srv://devashish15262:realEstateAppP123@real-estate.ikffppf.mongodb.net/real-estate?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 15000 })
     .then(() => {
         console.log('connected to mongoDB');
     })
